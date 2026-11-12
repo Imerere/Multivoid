@@ -3,6 +3,7 @@
 // the join lane is session_join.cpp. Master-server HTTP runs on detached workers.
 
 #include "coop/session/session_manager.h"
+#include "coop/player/players_registry.h"  // kMaxPeers
 #include "coop/game_build/game_build.h"
 
 #include "session_manager_internal.h"  // co-located: what the host and join lanes share
@@ -59,7 +60,7 @@ struct DeferredAnnounce {
     std::string name;
     std::string world;
     bool locked = false;
-    int playersMax = 4;
+    int playersMax = coop::players::kMaxPeers;
     int directPort = 0;
 };
 std::mutex g_deferredMu;
